@@ -142,3 +142,9 @@ You should be able to control the robot
 ```sh
 ros2 run teleop_twist_keyboard teleop_twist_keyboard
 ```
+
+If the robot is connected via USB, you should be able to connect to it via serial for debugging purposes:
+
+```sh
+pio device monitor -e esp32_wifi 
+```
