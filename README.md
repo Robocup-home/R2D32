@@ -99,3 +99,46 @@ cd ~
 echo "source \$HOME/uros_ws/install/setup.zsh" >> ~/.zshrc
 source ~/.zshrc
 ```
+
+# 2. Setup
+
+## 2.1 Clone the repo
+
+```sh
+git clone https://github.com/Robocup-home/R2D32.git
+```
+
+## 2.2 Update the config files
+
+Use your favourite text editor. In my case Neovim and update the wifi credentials and ip addresses in the files below:
+
+```sh
+mv R2D32/config/custom/ip_settings.h.env R2D32/config/custom/ip_settings.h
+mv R2D32/config/custom/wifi_ap.h.env R2D32/config/custom/wifi_ap.h
+
+nvim R2D32/config/custom/ip_settings.h
+nvim R2D32/config/custom/wifi_ap.h
+```
+
+## 2.3 Upload the firmware to the robot
+
+```sh
+cd R2D32/firmware
+pio run -e esp32_wifi -t upload
+```
+
+
+## 2.4 Run micro-ROS agent
+
+```sh
+ros2 run micro_ros_agent micro_ros_agent udp4 --port 8888
+```
+
+
+# 3. Test the setup
+
+You should be able to control the robot
+
+```sh
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```
